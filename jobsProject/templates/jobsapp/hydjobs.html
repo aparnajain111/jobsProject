@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+
+	<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'css/demojobs.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    <title>home page</title>
+</head>
+<body>
+    <h1>Hyderabad Jobs</h1>
+    <img src="{% static 'images/hyd1.jpg' %}">
+    <img src="{% static 'images/hyd2.jpg' %}">
+    <img src="{% static 'images/hyd3.jpg' %}">
+    {% if hyd_list %}
+    <table>
+        <thead>
+            <th>date</th>
+            <th>company</th>
+            <th>title</th>
+            <th>eligibility</th>
+            <th>address</th>
+            <th>email</th>
+            <th>phone no</th>
+        </thead>
+        {% for jobs in hyd_list %}
+        <tr>
+           <td>{{jobs.date}}</td>
+           <td>{{jobs.company}}</td>
+           <td>{{jobs.title}}</td>
+           <td>{{jobs.eligibility}}</td>
+           <td>{{jobs.address}}</td>
+           <td>{{jobs.email}}</td>
+           <td>{{jobs.phonenumber}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No record found</p>
+    {% endif %}
+{% include 'jobsapp/pagination.html' with page=hyd_list %}
+</body>
+</html>
